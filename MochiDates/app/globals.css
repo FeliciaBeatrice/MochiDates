@@ -1,5 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "mochidates";
+  default: false;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-primary: "#66FCF1";
+  --color-secondary: "#45A29E";
+  --color-accent: "#C5C6C7";
+  --color-background: "#0B0C10";
+  --color-foreground: "#1F2833";
+}
 
 /* Import Poppins font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -26,5 +42,9 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-poppins {
   font-family: 'Poppins', sans-serif;
 }
