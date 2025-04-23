@@ -1,8 +1,7 @@
-// app/page.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Header from '@/components/ui/Header'; // Assuming Header is styled appropriately
+import Header from '@/components/ui/Header';
 import ChatMessages from '@/components/chat/ChatMessages';
 import ChatInputArea from '@/components/chat/ChatInputArea';
 import Image from 'next/image';
@@ -51,51 +50,48 @@ export default function HomePage() {
         setMessages((prevMessages) => [...prevMessages, newMochiMessage]);
         setCurrentPromptIndex(nextIndex);
         setIsMochiTyping(false);
-      }, 1000); // Simulate thinking time
+      }, 1000);
     } else {
       setIsMochiTyping(false);
       setIsConversationEnd(true);
     }
   };
 
-  // Define the approximate height of your input area for mascot positioning
-  const inputAreaHeight = '80px'; // Adjust if your input area height differs
-
   return (
-    // Use DaisyUI base colors for the main container
-    <div className="flex flex-col h-screen bg-base-200 text-base-content">
-      <Header /> {/* Ensure Header uses theme colors */}
+    <div className="flex flex-col h-screen text-base-content">
+      <Header />
 
-      {/* Use a relative container for the main chat area to position mascot within it */}
-      <div className="flex-grow relative overflow-hidden flex flex-col"> {/* Added overflow-hidden */}
-        {/* Mascot Image Container */}
-        <div
-          className="absolute left-4 bottom-0 z-0 hidden md:block pointer-events-none"
-          style={{ bottom: inputAreaHeight }} // Position above input area
-        >
+      <div className="flex-grow flex flex-row overflow-hidden">
+
+        {/* 1. Mochi Image Container (Left Column) */}
+        <div className="hidden md:flex flex-shrink-0 w-40 p-4 items-end justify-center">
           <Image
-            src="/mochi-bunny.png" // Ensure image exists in /public
-            alt="Mochi Bunny Mascot"
+            src="/mochi.png"
+            alt="Mochi"
             width={120}
             height={120}
-            className="pixelated" // Apply pixelated style if defined in globals.css
           />
         </div>
 
-        {/* ChatMessages now sits inside the relative container */}
-        <ChatMessages messages={messages} isMochiTyping={isMochiTyping} />
+        {/* 2. Chat Area Container (Right Column) */}
+        <div className="flex flex-col flex-grow h-full overflow-hidden">
+
+          <ChatMessages
+            messages={messages}
+            isMochiTyping={isMochiTyping}
+          />
+
+          <ChatInputArea
+            currentPrompt={currentPrompt}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            handleUserResponse={handleUserResponse}
+            isMochiTyping={isMochiTyping}
+            isConversationEnd={isConversationEnd}
+          />
+        </div>
+
       </div>
-
-
-      {/* ChatInputArea remains at the bottom */}
-      <ChatInputArea
-        currentPrompt={currentPrompt}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        handleUserResponse={handleUserResponse}
-        isMochiTyping={isMochiTyping}
-        isConversationEnd={isConversationEnd}
-      />
     </div>
   );
 }

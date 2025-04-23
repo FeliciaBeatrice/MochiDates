@@ -19,13 +19,11 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isMochiTyping }) 
     }, [messages, isMochiTyping]);
 
     return (
-        // Use theme background color (or specify) and ensure padding
-        <div className="flex-grow overflow-y-auto p-4 space-y-2 relative z-10 bg-base-200"> {/* Adjusted space, added bg */}
+        <div className="flex-grow overflow-y-auto p-4 space-y-2 relative z-10 bg-foreground">
             {messages.map((msg) => (
                 <ChatBubble key={msg.id} sender={msg.sender} message={msg.message} />
             ))}
             {isMochiTyping && (
-                // Use ChatBubble for typing indicator for consistent styling
                 <ChatBubble sender="mochi" message="..." />
             )}
             <div ref={chatEndRef} />

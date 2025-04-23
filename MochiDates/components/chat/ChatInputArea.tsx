@@ -43,9 +43,8 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
     const isDisabled = isMochiTyping || isConversationEnd;
 
     return (
-        // Use DaisyUI base colors for background/border
-        <div className="p-4 border-t border-base-300 bg-base-200 z-20 min-h-[80px] flex items-center"> {/* Ensure vertical centering */}
-            <div className="w-full"> {/* Inner container to take full width */}
+        <div className="p-4 border-t border-base-300 bg-background z-20 min-h-[80px] flex items-center"> {/* Ensure vertical centering */}
+            <div className="w-full">
                 {!isConversationEnd && currentPrompt ? (
                     <>
                         {currentPrompt.inputMode === 'text' && (
