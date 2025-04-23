@@ -64,23 +64,22 @@ export default function HomePage() {
       <div className="flex-grow flex flex-row overflow-hidden">
 
         {/* 1. Mochi Image Container (Left Column) */}
-        <div className="hidden md:flex flex-shrink-0 w-40 p-4 items-end justify-center">
+        <div className="hidden md:flex flex-shrink-0 w-48 items-end overflow-hidden">
           <Image
             src="/mochi.png"
             alt="Mochi"
-            width={120}
-            height={120}
+            width={250}
+            height={250}
+            className="translate-y-10"
           />
         </div>
 
         {/* 2. Chat Area Container (Right Column) */}
         <div className="flex flex-col flex-grow h-full overflow-hidden">
-
           <ChatMessages
             messages={messages}
             isMochiTyping={isMochiTyping}
           />
-
           <ChatInputArea
             currentPrompt={currentPrompt}
             inputValue={inputValue}
