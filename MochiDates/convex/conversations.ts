@@ -121,10 +121,6 @@ export const generateDateIdeas = action({
                 title: "ArtScience Museum & Marina Bay Sands View",
                 description: "Visit an inspiring exhibition at the ArtScience Museum, then head up to the Marina Bay Sands Skypark Observation Deck for breathtaking panoramic views of the Singapore skyline.",
             },
-            {
-                title: "Digicam Hunting & Cafe Hopping in Tiong Bahru",
-                description: "Explore the charming Tiong Bahru neighbourhood with your digital cameras, capturing its unique architecture. Refuel and compare shots at one of the many trendy cafes.",
-            }
         ];
         
         await ctx.runMutation(internal.conversations.saveDateIdeas, {

@@ -27,12 +27,12 @@ function LoadingContent() {
         }
 
         if (conversationData) {
-            // if (conversationData.status === 'completed') {
-            //     router.replace(`/results/${conversationId}`);
-            // } else if (conversationData.status === 'error') {
-            //     console.error("Error processing conversation:", conversationId);
-            //      router.replace(`/results/${conversationId}?error=true`);
-            // }
+            if (conversationData.status === 'completed') {
+                router.replace(`/results/${conversationId}`);
+            } else if (conversationData.status === 'error') {
+                console.error("Error processing conversation:", conversationId);
+                 router.replace(`/results/${conversationId}?error=true`);
+            }
         }
     }, [conversationData, router, conversationId]);
 
