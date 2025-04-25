@@ -71,16 +71,17 @@ function ResultsContent() {
 
     // --- Results Display ---
     const ideas = conversationData?.dateIdeas;
+    const displayedIdeas = ideas?.slice(0, 3) || [];
 
     return (
         <div className="flex flex-col items-center w-full p-4 md:p-8">
             {/* Cards Section */}
-            {ideas && ideas.length > 0 ? (
-                <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8 w-full">
-                    {ideas.map((idea, index) => (
+            {displayedIdeas && displayedIdeas.length > 0 ? (
+                <div className="flex justify-center gap-6 md:gap-8 mb-8 w-full max-w-5xl">
+                    {displayedIdeas.map((idea, index) => (
                         (typeof idea === 'object' && idea !== null && typeof idea.title === 'string' && typeof idea.description === 'string')
-                            ? <DateIdeaCard key={index} idea={idea as DateIdea} />
-                            : <div key={index} className="text-warning p-4 border border-warning rounded-lg">Received an invalid idea format.</div>
+                            ? <div key={index} className="flex-none"><DateIdeaCard idea={idea as DateIdea} /></div>
+                            : <div key={index} className="text-warning p-4 border border-warning rounded-lg flex-none">Received an invalid idea format.</div>
                     ))}
                 </div>
             ) : (
@@ -112,7 +113,7 @@ export default function ResultsPage() {
     return (
         <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow flex flex-col items-center justify-center py-8 bg-foreground">
+            <main className="flex-grow flex flex-col items-center py-8 bg-foreground">
                 <Suspense fallback={
                     <div className="flex-grow flex flex-col items-center justify-center">
                         <span className="loading loading-spinner loading-lg"></span>
